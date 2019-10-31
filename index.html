@@ -1,0 +1,143 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>HW7</title>
+
+<style type="text/css">
+	body {
+    	background-color: #000000;
+	}
+	p {
+		color: #FFFFFF;
+		font-family: Optima;
+	}
+	h1 {
+		font-size: 250%;
+		margin-bottom: -35;
+	}
+	h2 {
+		font-family: Optima;
+		color: #FFFFFF;
+	}
+	.artists {
+		font-size: 130%;
+		margin-bottom: -40;
+	}
+	.genre {
+		font-size: 120%;
+		margin-bottom: -15;
+	}
+	.display_genre {
+		padding-top: 1%;
+		padding-bottom: 1%;
+	}
+	.dropbtn {
+  		background-color: #00c9ff;
+  		color: #FFFFFF;
+  		padding: 12px;
+  		margin-right: 14;
+  		margin-top: 14;
+  		font-size: 24px;
+  		border: none;
+  		cursor: pointer;
+	}
+	.dropdown {
+  		position: relative;
+  		display: inline-block;
+	}
+	.dropdown-content {
+  		display: none;
+  		position: absolute;
+  		background-color: #FFFFFF;
+  		min-width: 160px;
+	}
+	.dropdown-content p {
+  		color: #000000;
+  		padding: 8px 8px;
+  		display: block;
+	}
+	.dropdown-content p:hover {background-color: #f1f1f1}
+	.dropdown:hover .dropdown-content {
+  		display: block;
+  		cursor: pointer;
+	}
+	.dropdown:hover .dropbtn {
+  		background-color: #008db3;
+	}
+</style>
+</head>
+
+<body>
+	<div class="dropdown" style="float:right;">
+  		<button class="dropbtn">Select a Genere:</button>
+  		<div class="dropdown-content">
+  			<p onclick="genre_rap()"><b>Rap</b></p>
+  			<p onclick="genre_rb()"><b>R&B</b></p>
+  			<p onclick="genre_hiphop()"><b>Hip-Hop</b></p>
+  		</div>
+	</div>
+	<p id="genre_songs" class="display_genre"></p>
+	<p id="display"></p>
+	<p style="position: relative; top: 5%"><b>Information Serialized:</b></p>
+	<p style="position: relative; top: 6%" id="serialize"></p>
+</body>	
+
+<script language="javascript">
+var obj = [
+	{"id" : "Song1", "artist" : "Chance the Rapper", "title" : "Hotshower", "genre" : "Rap", "released" : 2019},
+	{"id" : "Song2", "artist" : "H.E.R", "title" : "Slide", "genre" : "R&B", "released" : 2019 },
+	{"id" : "Song3", "artist" : "Chance the Rapper", "title" : "Slide Around", "genre" : "Hip-Hop", "released" : 2019},
+	{"id" : "Song4", "artist" : "Childish Gambino", "title" : "Sweatpants", "genre" : "Rap", "released" : 2013},
+	{"id" : "Song5", "artist" : "Montell Jordan", "title" : "This Is How We Do It", "genre" : "R&B", "released" : 1995},
+	{"id" : "Song6", "artist" : "The Notorious B.I.G.", "title" : "Juicy", "genre" : "Hip-Hop", "released" : 1994},
+	{"id" : "Song7", "artist" : "Lil Pump", "title" : "Butterfly Doors", "genre" : "Rap", "released" : 2019},
+	{"id" : "Song8", "artist" : "Bruno Mars", "title" : "That's What I Like", "genre" : "R&B", "released" : 2016},
+	{"id" : "Song9", "artist" : "Drake", "title" : "Money In The Grave", "genre" : "Hip-Hop", "released" : 2019},
+	{"id" : "Song10", "artist" : "Travis Scott", "title" : "Sicko Mode", "genre" : "Rap", "released" : 2018}
+]
+var myJSON = JSON.stringify(obj);
+document.getElementById("serialize").innerHTML = myJSON;
+
+myJSON = JSON.parse(myJSON);
+
+var x = "";
+for (var i = 0; i < myJSON.length; i++) {
+	x += "<h1>" + myJSON[i].title + "</h1>" + "<br>" 
+		+ "<p class='artists'>" + myJSON[i].artist + "</p>" + "<br>" 
+		+ "<p class='genre'>" + myJSON[i].genre + "</p>" + "<br>" 
+		+ myJSON[i].released + "<br>";
+}
+
+document.getElementById("display").innerHTML = x;
+
+function genre_rap() {
+	var temp = ""; 
+	for (var i = 0; i < myJSON.length; i++) {
+		if (myJSON[i].genre == "Rap") {
+			temp += myJSON[i].title + "<br>";
+		}
+	}
+	document.getElementById("genre_songs").innerHTML = "<b style='font-size: 160%''> Rap Songs: </b>" + "<br>" + temp;
+}
+function genre_rb() {
+	var temp = ""; 
+	for (var i = 0; i < myJSON.length; i++) {
+		if (myJSON[i].genre == "R&B") {
+			temp += myJSON[i].title + "<br>";
+		}
+	}
+	document.getElementById("genre_songs").innerHTML = "<b style='font-size: 160%''> R&B Songs: </b>" + "<br>" + temp;
+}
+function genre_hiphop() {
+	var temp = ""; 
+	for (var i = 0; i < myJSON.length; i++) {
+		if (myJSON[i].genre == "Hip-Hop") {
+			temp += myJSON[i].title + "<br>";
+		}
+	}
+	document.getElementById("genre_songs").innerHTML = "<b style='font-size: 160%''> Hip-Hop Songs: </b>" + "<br>" + temp;
+}
+
+</script>
+
+</html>
